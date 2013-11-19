@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import com.epam.api.strategy.GameStrategy;
+
 public class TorpedoClient {
 
     private final int portNumber;
@@ -17,7 +19,7 @@ public class TorpedoClient {
         portNumber = Integer.parseInt(string.split(":")[1]);
     }
 
-    public void initClient(GameWithShips gameWithShips){
+    public void initClient(GameWithShips gameWithShips, GameStrategy gameStrategy){
         try (
             Socket clientSocket = new Socket(hostName, portNumber);
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -25,10 +27,12 @@ public class TorpedoClient {
           ) {
             String fromServer;
             String fromUser;
-            TorpedoProtocol torpedoProtocol = new TorpedoProtocol(gameWithShips, 0);
+            TorpedoProtocol torpedoProtocol = new TorpedoProtocol(gameWithShips, 0, gameStrategy);
+            out.println(gameStrategy.firstTarget());
             while ((fromServer = in.readLine()) != null) {
                 System.out.println("Server: " + fromServer);
-                if (fromServer.equals("Bye.")){
+                if (fromServer.toLowerCase().equals("win")){
+                    System.out.format("Defeat!%n");
                     break;
                 }
                 fromUser = torpedoProtocol.processInput(fromServer);

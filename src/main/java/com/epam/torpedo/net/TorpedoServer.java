@@ -7,6 +7,9 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import com.epam.api.strategy.GameStrategy;
+import com.epam.api.strategy.random.RandomTargetStrategy;
+
 public class TorpedoServer {
 
     private final int portNumber;
@@ -27,7 +30,8 @@ public class TorpedoServer {
                 gameWithShips.setBoardSize(Integer.parseInt(inputLine.split(" ")[1]));
                 gameWithShips.initialise();
             }
-            TorpedoProtocol torpedoProtocol = new TorpedoProtocol(gameWithShips, 1);
+            GameStrategy gameStrategy = new RandomTargetStrategy(Integer.parseInt(inputLine.split(" ")[1]));
+            TorpedoProtocol torpedoProtocol = new TorpedoProtocol(gameWithShips, 1, gameStrategy);
             while((inputLine = in.readLine()) != null){
                 outputLine = torpedoProtocol.processInput(inputLine);
                 out.println(outputLine);

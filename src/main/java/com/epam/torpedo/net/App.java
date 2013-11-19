@@ -1,5 +1,9 @@
 package com.clean.main;
 
+import com.epam.api.strategy.GameStrategy;
+import com.epam.api.strategy.random.RandomTargetStrategy;
+
+
 
 public class App 
 {
@@ -18,7 +22,8 @@ public class App
     	if(args[1].contains(":")){
             TorpedoClient torpedoClient = new TorpedoClient(args[1]);
             game.setBoardSize(Integer.parseInt(args[2]));
-            torpedoClient.initClient(game);
+            GameStrategy gameStrategy = new RandomTargetStrategy(Integer.parseInt(args[2]));
+            torpedoClient.initClient(game, gameStrategy);
     	} else {
             TorpedoServer torpedoServer = new TorpedoServer(args[1]);
             torpedoServer.initServer(game);
