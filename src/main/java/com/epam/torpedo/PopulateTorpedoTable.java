@@ -1,6 +1,6 @@
 package com.epam.torpedo;
 
-import com.epam.torpedo.ship.Ship;
+import com.epam.torpedo.ship.SimpleShip;
 import com.epam.torpedo.table.TorpedoTable;
 
 public class PopulateTorpedoTable {
@@ -14,14 +14,14 @@ public class PopulateTorpedoTable {
 
     public void populateTable(){
         while(torpedotable.getTable().size() < 25){
-            Ship ship = generateShip();
+            SimpleShip ship = generateShip();
             if(!torpedotable.getTable().contains(ship)){
                 torpedotable.getTable().add(generateShip());
             }
         }
     }
     
-    private Ship generateShip(){
-        return new Ship((int)(Math.random()*20),(int)(Math.random()*20));
+    private SimpleShip generateShip(){
+        return new SimpleShip((int)(Math.random()*20),(int)(Math.random()*20));
     }
 }

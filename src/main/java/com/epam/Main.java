@@ -4,7 +4,8 @@ import com.epam.impl.RandomTorpedo;
 import com.epam.impl.RandomTorpedoWithShips;
 import com.epam.torpedo.NextTarget;
 import com.epam.torpedo.PopulateTorpedoTable;
-import com.epam.torpedo.ship.Ship;
+import com.epam.torpedo.Status;
+import com.epam.torpedo.ship.SimpleShip;
 import com.epam.torpedo.table.TorpedoTable;
 
 public class Main {
@@ -19,8 +20,8 @@ public class Main {
         RandomTorpedo randomtorpedo = new RandomTorpedo();
            
            while(randomtorpedo.getScore() < 20){
-               Ship nexttargetship = nexttarget.newTarget();
-               if (randomtorpedo.fire(nexttargetship.getXpositon(), nexttargetship.getYpositon())){
+               SimpleShip nexttargetship = nexttarget.newTarget();
+               if (randomtorpedo.fire(nexttargetship.getXpositon(), nexttargetship.getYpositon())==Status.HIT_AND_SINK){
                    randomtorpedo.incrementScore();
                }
            }
@@ -33,8 +34,8 @@ public class Main {
        populatetorpedotable.populateTable();
        RandomTorpedoWithShips randomtorpedowithships = new RandomTorpedoWithShips(torpedotable);
        while(randomtorpedowithships.getScore() < 25){
-          Ship nexttargetship = nexttarget.newTarget();
-          if(randomtorpedowithships.fire(nexttargetship.getXpositon(), nexttargetship.getYpositon())){
+          SimpleShip nexttargetship = nexttarget.newTarget();
+          if(randomtorpedowithships.fire(nexttargetship.getXpositon(), nexttargetship.getYpositon())==Status.HIT_AND_SINK){
               randomtorpedowithships.incrementScore();
           }
        }

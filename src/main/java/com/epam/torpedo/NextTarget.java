@@ -1,10 +1,10 @@
 package com.epam.torpedo;
 
-import com.epam.torpedo.ship.Ship;
+import com.epam.torpedo.ship.SimpleShip;
 
 public class NextTarget {
     
-    public Ship newTarget(){
-        return new Ship((int)(Math.random()*20), (int)(Math.random()*20));
+    public SimpleShip newTarget(){
+        return new SimpleShip((int)(Math.random()*20), (int)(Math.random()*20));
     }
 }

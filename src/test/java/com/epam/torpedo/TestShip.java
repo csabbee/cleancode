@@ -4,21 +4,21 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.epam.torpedo.ship.Ship;
+import com.epam.torpedo.ship.SimpleShip;
 
 public class TestShip {
 
-    private Ship underTest;
+    private SimpleShip underTest;
     
     @Before
     public void setUp(){
-        underTest = new Ship(2,2);
+        underTest = new SimpleShip(2,2);
     }
     
     @Test
     public void testEqualsWhenItShouldReturnTrue(){
         //GIVEN
-        Ship reference = new Ship(2,2);
+        SimpleShip reference = new SimpleShip(2,2);
         //WHEN
         boolean result1 = underTest.equals(reference);
         boolean result2 = reference.equals(underTest);
@@ -30,7 +30,7 @@ public class TestShip {
     @Test
     public void testEqualsMethodWhenItShouldReturnFalse(){
         //GIVEN
-        Ship reference = new Ship(2,3);
+        SimpleShip reference = new SimpleShip(2,3);
         //WHEN
         boolean result1 = underTest.equals(reference);
         boolean result2 = reference.equals(underTest);
@@ -50,7 +50,7 @@ public class TestShip {
     @Test
     public void testHashCodeMethodWithAnotherObject(){
         //GIVEN
-        Ship reference = new Ship(2,3);
+        SimpleShip reference = new SimpleShip(2,3);
         //WHEN
         boolean actual = reference.hashCode() == underTest.hashCode() ? true : false;
         //THEN

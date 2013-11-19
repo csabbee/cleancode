@@ -1,6 +1,8 @@
 package com.epam.api;
 
+import com.epam.torpedo.Status;
+
 public interface Torpedo {
 
-    public boolean fire(int x, int y);
+    public Status fire(int x, int y);
 }

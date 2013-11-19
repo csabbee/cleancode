@@ -1,7 +1,8 @@
 package com.epam.impl;
 
 import com.epam.api.Torpedo;
-import com.epam.torpedo.ship.Ship;
+import com.epam.torpedo.Status;
+import com.epam.torpedo.ship.SimpleShip;
 import com.epam.torpedo.table.TorpedoTable;
 
 public class RandomTorpedoWithShips implements Torpedo{
@@ -15,9 +16,13 @@ public class RandomTorpedoWithShips implements Torpedo{
         this.torpedotable = torpedotable;
     }
     
-    public boolean fire(int x, int y) {
+    public Status fire(int x, int y) {
         tries++;
-        return torpedotable.contains(new Ship(x,y)) ? true : false;
+        Status status = Status.MISS;
+        if(torpedotable.contains(new SimpleShip(x,y))){
+            status = Status.HIT_AND_SINK;
+        }
+        return status;
     }
     
     public int getScore() {

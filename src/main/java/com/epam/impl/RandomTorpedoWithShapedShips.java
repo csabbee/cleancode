@@ -2,36 +2,31 @@ package com.epam.impl;
 
 import com.epam.api.Torpedo;
 import com.epam.torpedo.Status;
+import com.epam.torpedo.table.EnhancedTorpedoTable;
 
-public class RandomTorpedo implements Torpedo {
+public class RandomTorpedoWithShapedShips implements Torpedo{
 
     private int score;
     private int tries;
-    
-    public RandomTorpedo(){
+    private EnhancedTorpedoTable torpedotable;
+    public RandomTorpedoWithShapedShips(EnhancedTorpedoTable torpedotable){
         score = 0;
         tries = 0;
+        this.torpedotable = torpedotable;
     }
     
     public Status fire(int x, int y) {
         tries++;
-        Status status = Status.MISS;
-        if(Math.random() > 0.5){
-            status = Status.HIT_AND_SINK;
-        }   
-        return status;
+        return torpedotable.contains(x, y);
     }
     
     public int getScore() {
         return score;
     }
-    
     public void incrementScore() {
         score++;
     }
-    
     public int getTries() {
         return tries;
     }
-
 }
