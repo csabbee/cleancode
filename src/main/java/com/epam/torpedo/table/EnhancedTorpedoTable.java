@@ -35,5 +35,14 @@ public class EnhancedTorpedoTable {
     public void setTable(List<ShapedShip> table) {
         this.table = table;
     }
+    public boolean isWon() {
+        boolean result = true;
+        for (ShapedShip shapedShip : table) {
+            if(!shapedShip.isSinked()){
+                result = false;
+            }
+        }
+        return result;
+    }
     
 }

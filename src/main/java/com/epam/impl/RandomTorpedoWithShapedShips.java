@@ -29,4 +29,8 @@ public class RandomTorpedoWithShapedShips implements Torpedo{
     public int getTries() {
         return tries;
     }
+
+    public boolean isWon() {
+        return torpedotable.isWon();
+    }
 }

@@ -1,19 +1,34 @@
 package com.epam;
 
 import com.epam.impl.RandomTorpedo;
+import com.epam.impl.RandomTorpedoWithShapedShips;
 import com.epam.impl.RandomTorpedoWithShips;
 import com.epam.torpedo.NextTarget;
+import com.epam.torpedo.PopulateEnhancedTorpedoTable;
 import com.epam.torpedo.PopulateTorpedoTable;
 import com.epam.torpedo.Status;
 import com.epam.torpedo.ship.SimpleShip;
+import com.epam.torpedo.table.EnhancedTorpedoTable;
 import com.epam.torpedo.table.TorpedoTable;
 
 public class Main {
 
     public static void main(String[] args){       
-       NextTarget nexttarget = new NextTarget();
-       runRandomTorpedo(nexttarget);
-       runRandomTorpedoWithShips(nexttarget);
+       NextTarget nextTarget = new NextTarget();
+       runRandomTorpedo(nextTarget);
+       runRandomTorpedoWithShips(nextTarget);       
+       runRanomTorpedoWithShapedShip(nextTarget);
+    }
+
+    public static void runRanomTorpedoWithShapedShip(NextTarget nextTarget) {
+        EnhancedTorpedoTable enhancedTorpedoTable = new EnhancedTorpedoTable();
+           PopulateEnhancedTorpedoTable populateEnhancedTorpedoTable = new PopulateEnhancedTorpedoTable(enhancedTorpedoTable);
+           populateEnhancedTorpedoTable.populateTable();
+           RandomTorpedoWithShapedShips randomTorpedoWithShapedShips = new RandomTorpedoWithShapedShips(enhancedTorpedoTable);
+           while(!randomTorpedoWithShapedShips.isWon()){
+               SimpleShip nextTargetShip = nextTarget.newTarget();
+               randomTorpedoWithShapedShips.fire(nextTargetShip.getXpositon(), nextTargetShip.getYpositon());
+           }
     }
 
     public static void runRandomTorpedo(NextTarget nexttarget) {

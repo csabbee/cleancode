@@ -19,14 +19,47 @@ public class PopulateEnhancedTorpedoTable {
         List<ShapedShip> table = new ArrayList<>();
         ShapedShip shapedShip = null;
         while(shapedShip == null){
-            
+            int x = (int)(Math.random()*20);
+            int y = (int)(Math.random()*20);
+            shapedShip = createTShapedShip(x, y);
         }
-        table.add(createTShapedShip(0, 0));
-        table.add(createLineShapedShipWithFourBlocks(0, 3));
-        table.add(createLineShapedShipWithFourBlocks(0, 5));
-        table.add(createLineShapedShipWithThreeBlocks(15, 0));
-        table.add(createLineShapedShipWithTwoBlocks(16, 16));
-        table.add(createLineShapedShipWithOneBlock(19, 19));
+        table.add(shapedShip);
+        shapedShip = null;
+        while(shapedShip == null){
+            int x = (int)(Math.random()*20);
+            int y = (int)(Math.random()*20);
+            shapedShip = createLineShapedShipWithFourBlocks(x, y);
+        }
+        table.add(shapedShip);
+        shapedShip = null;
+        while(shapedShip == null){
+            int x = (int)(Math.random()*20);
+            int y = (int)(Math.random()*20);
+            shapedShip = createLineShapedShipWithFourBlocks(x, y);
+        }
+        table.add(shapedShip);
+        shapedShip = null;
+        while(shapedShip == null){
+            int x = (int)(Math.random()*20);
+            int y = (int)(Math.random()*20);
+            shapedShip = createLineShapedShipWithThreeBlocks(x, y);
+        }
+        table.add(shapedShip);
+        shapedShip = null;
+        while(shapedShip == null){
+            int x = (int)(Math.random()*20);
+            int y = (int)(Math.random()*20);
+            shapedShip = createLineShapedShipWithTwoBlocks(x, y);
+        }
+        table.add(shapedShip);
+        shapedShip = null;
+        while(shapedShip == null){
+            int x = (int)(Math.random()*20);
+            int y = (int)(Math.random()*20);
+            shapedShip = createLineShapedShipWithOneBlock(x, y);
+        }
+        table.add(shapedShip);
+        shapedShip = null;
         enhancedtorpedotable.setTable(table);
     }
     
