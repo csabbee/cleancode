@@ -1,19 +1,29 @@
 package com.clean.shipgame;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.clean.interfaces.Torpedo;
 import com.clean.printer.ConsolePrinter;
 import com.clean.ship.ShipFileReader;
 import com.clean.ship.ShipLocations;
 import com.clean.tablewithships.ShipImplementation;
 
+@Component
 public class GameWithShips implements Torpedo {
 	
+	@Autowired
 	private ShipLocations shipLocations;
+	@Autowired
     private ShipImplementation impl;
 	private int loseCondition = 0;
+	@Autowired
 	private int numberOfTargets;
+	@Autowired
 	private int boardSize;
+	@Autowired
 	private String filename;
+	@Autowired
 	private ShipFileReader shipFileReader;
 	private ConsolePrinter printer;
 	
@@ -40,14 +50,7 @@ public class GameWithShips implements Torpedo {
     }
     
     public void initialise() {
-    	impl.setReader(shipFileReader);
-    	impl.setFilename(filename);
-    	impl.setShipLocations(shipLocations);
-    	impl.setBoardSize(boardSize);
-    	impl.initialisation();
-    	impl.placeShips();
         printer = new ConsolePrinter(shipLocations, boardSize);
-    	numberOfTargets = impl.getTotalNumberOfTargets();
     	System.out.format("numberOfTargets=%s %n", numberOfTargets);
     }
 

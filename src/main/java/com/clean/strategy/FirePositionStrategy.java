@@ -3,13 +3,20 @@ package com.clean.strategy;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.clean.interfaces.GameStrategy;
 import com.clean.ship.Point;
 import com.clean.shipgame.Status;
 
+@Component
 public class FirePositionStrategy implements GameStrategy {
 		
 	private List<Point> guesses;
+	@Autowired
 	private XYGuessGenerator generator;
 	private List<Point> hits = new ArrayList<>();
 	private List<Point> guessesFirstHalf = new ArrayList<>();
@@ -17,6 +24,7 @@ public class FirePositionStrategy implements GameStrategy {
 	private Point tempPoint;
 	private Point previousPoint;
 	
+	@PostConstruct
 	public void initialise() {
 		generator.generateOptimalGuess(0, 0);
 		generator.generateOptimalGuess(0, 1);

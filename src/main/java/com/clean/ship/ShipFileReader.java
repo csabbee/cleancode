@@ -7,11 +7,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class ShipFileReader {
 	
+	@Autowired
 	private List<String[][]> ships = new ArrayList<String[][]>();
+	@Autowired
 	private List<Integer> numberOfShips = new ArrayList<Integer>();
 	
+	@Autowired
 	private String filename;
 	
 	private String[] convert(String string) {
@@ -23,6 +32,7 @@ public class ShipFileReader {
 		return answer;
 	}
 
+	@PostConstruct
 	public void read() {
 		BufferedReader reader = null;
 		try {

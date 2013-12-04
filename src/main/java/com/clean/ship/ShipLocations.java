@@ -3,6 +3,9 @@ package com.clean.ship;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ShipLocations {
 	
 	private List<Ship> shipLocations = new ArrayList<Ship>();

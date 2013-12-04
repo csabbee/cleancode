@@ -4,18 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.clean.ship.ShipFileReader;
 import com.clean.ship.ShipLocations;
 
+@Component
 public class ShipImplementation {
 	
     Random randomgenerator;
+    @Autowired
     private ShipLocations shipLocations;
+    @Autowired
     private ShipFileReader reader;
+    @Autowired
 	List<String[][]> ships = new ArrayList<String[][]>();
 	List<Integer> numberOfShips = new ArrayList<Integer>();
+	@Autowired
     private int boardSize;
     private int totalNumberOfTargets;
+    @Autowired
     private String filename;
 	
 	private void calculateNumberOfTargets() {
@@ -28,14 +39,8 @@ public class ShipImplementation {
 			}
 		}
 	}
-	
-	public void initialisation() {
-		reader.setFilename(filename);
-		reader.read();
-		ships = reader.getShips();
-		numberOfShips = reader.getNumberOfShips();	
-	}
 
+	@PostConstruct
     public void placeShips() {
     	randomgenerator = new Random();
     	for (int index = 0; index < ships.size(); index++) {

@@ -3,8 +3,11 @@ package com.clean.strategy;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.clean.ship.Point;
 
+@Component
 public class XYGuessGenerator {
 	
 	public XYGuessGenerator(int boardSize) {
